@@ -13,8 +13,9 @@ stages:
       size: 960
     params:
       params.yaml:
-        split.random_state: 42
-        split.test_size: 0.2
+        split:
+          test_size: 0.2
+          random_state: 42
     outs:
     - path: data/processed/X_test.csv
       hash: md5
@@ -73,19 +74,20 @@ stages:
       size: 704
     params:
       params.yaml:
-        grid_search.learning_rate:
-        - 0.01
-        - 0.1
-        grid_search.max_depth:
-        - 3
-        - 5
-        grid_search.n_estimators:
-        - 50
-        - 100
+        grid_search:
+          n_estimators:
+          - 50
+          - 100
+          learning_rate:
+          - 0.01
+          - 0.1
+          max_depth:
+          - 3
+          - 5
     outs:
     - path: models/best_params.pkl
       hash: md5
-      md5: 7e7379f9adfc9eb7b7c16600aff320de
+      md5: 835ba725fa94135959051fdfa4a2ead1
       size: 72
   training:
     cmd: python src/models/training.py
@@ -100,7 +102,7 @@ stages:
       size: 25951
     - path: models/best_params.pkl
       hash: md5
-      md5: 7e7379f9adfc9eb7b7c16600aff320de
+      md5: 835ba725fa94135959051fdfa4a2ead1
       size: 72
     - path: src/models/training.py
       hash: md5
@@ -109,8 +111,8 @@ stages:
     outs:
     - path: models/gbr_model.pkl
       hash: md5
-      md5: ad54c27ef9b51b15fe883c073ea83812
-      size: 76888
+      md5: 942aee22bc8da9c1497525d5f6823152
+      size: 201464
   evaluate:
     cmd: python src/models/evaluate.py
     deps:
@@ -124,8 +126,8 @@ stages:
       size: 6456
     - path: models/gbr_model.pkl
       hash: md5
-      md5: ad54c27ef9b51b15fe883c073ea83812
-      size: 76888
+      md5: 942aee22bc8da9c1497525d5f6823152
+      size: 201464
     - path: src/models/evaluate.py
       hash: md5
       md5: d8517366d4a0ea84ee305c5ad830daa7
@@ -133,9 +135,9 @@ stages:
     outs:
     - path: data/prediction.csv
       hash: md5
-      md5: b57aef8d2bab5f2eb5a00720e0be5ffa
-      size: 6771
+      md5: 479f8da175daee04e3b6ac416229f04e
+      size: 6780
     - path: metrics/scores.json
       hash: md5
-      md5: 3c93670ce87c3503c5ba589610344098
+      md5: 1f11f4f78fbee000283f53adb60bcb3f
       size: 64

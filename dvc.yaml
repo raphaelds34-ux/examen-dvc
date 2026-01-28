@@ -5,8 +5,7 @@ stages:
     - data/raw/raw.csv
     - src/data/data_split.py
     params:
-    - split.test_size
-    - split.random_state
+    - split
     outs:
     - data/processed/X_test.csv
     - data/processed/X_train.csv
@@ -30,9 +29,7 @@ stages:
     - data/processed/y_train.csv
     - src/models/grid_search.py
     params:
-    - grid_search.learning_rate
-    - grid_search.max_depth
-    - grid_search.n_estimators
+    - grid_search
     outs:
     - models/best_params.pkl
 
