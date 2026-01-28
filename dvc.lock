@@ -7,6 +7,10 @@ stages:
       hash: md5
       md5: 617b56af2992376d5c3e91ad80823898
       size: 333757
+    - path: params.yaml
+      hash: md5
+      md5: ff36a9761b613de1dfac409440287400
+      size: 132
     - path: src/data/data_split.py
       hash: md5
       md5: b06f3940c315b073c86fc3a7c91f23cd
@@ -68,6 +72,10 @@ stages:
       hash: md5
       md5: a9cd9d91da89f732843d72548f64ded3
       size: 25951
+    - path: params.yaml
+      hash: md5
+      md5: ff36a9761b613de1dfac409440287400
+      size: 132
     - path: src/models/grid_search.py
       hash: md5
       md5: 40d5bce4bcb40521e39f44ef6358533e
@@ -87,7 +95,7 @@ stages:
     outs:
     - path: models/best_params.pkl
       hash: md5
-      md5: 835ba725fa94135959051fdfa4a2ead1
+      md5: 1a37f8af6ef846d1141a39cef3ae312b
       size: 72
   training:
     cmd: python src/models/training.py
@@ -102,7 +110,7 @@ stages:
       size: 25951
     - path: models/best_params.pkl
       hash: md5
-      md5: 835ba725fa94135959051fdfa4a2ead1
+      md5: 1a37f8af6ef846d1141a39cef3ae312b
       size: 72
     - path: src/models/training.py
       hash: md5
@@ -111,8 +119,8 @@ stages:
     outs:
     - path: models/gbr_model.pkl
       hash: md5
-      md5: 942aee22bc8da9c1497525d5f6823152
-      size: 201464
+      md5: 06f559ce40f007fec24da0eb61dd112a
+      size: 138232
   evaluate:
     cmd: python src/models/evaluate.py
     deps:
@@ -126,8 +134,8 @@ stages:
       size: 6456
     - path: models/gbr_model.pkl
       hash: md5
-      md5: 942aee22bc8da9c1497525d5f6823152
-      size: 201464
+      md5: 06f559ce40f007fec24da0eb61dd112a
+      size: 138232
     - path: src/models/evaluate.py
       hash: md5
       md5: d8517366d4a0ea84ee305c5ad830daa7
@@ -135,9 +143,9 @@ stages:
     outs:
     - path: data/prediction.csv
       hash: md5
-      md5: 479f8da175daee04e3b6ac416229f04e
-      size: 6780
+      md5: 35127b1430abbb40fb5590a32e209ff6
+      size: 6784
     - path: metrics/scores.json
       hash: md5
-      md5: 1f11f4f78fbee000283f53adb60bcb3f
+      md5: 235f63ea1892d992b19995c6804f3772
       size: 64
